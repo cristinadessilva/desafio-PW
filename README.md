@@ -1,11 +1,11 @@
 [autor-link]:https://img.shields.io/badge/Autora-Cristina%20de%20Souza%20e%20Silva-lightgrey
-[licenca-link]:https://img.shields.io/badge/Linguagem-Python-lightgrey
+[linguagem-link]:https://img.shields.io/badge/Linguagem-Python-lightgrey
 [licenca-link]:https://img.shields.io/badge/Licença-MIT-lightgrey
 
 # :memo: Desafio de Programação - ProWay
 
 [![Autora][autor-link]](https://github.com/cristinadessilva)
-[![Linguagem][licenca-link]](https://www.python.org/)
+[![Linguagem][linguagem-link]](https://www.python.org/)
 [![licença][licenca-link]](https://github.com/cristinadessilva/desafio-PW/blob/main/LICENSE)
 
 Desafio realizado pela ProWay:
