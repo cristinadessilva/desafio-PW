@@ -3,7 +3,7 @@ from config import *
 class Sala(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome_sala = db.Column(db.String(254))
-    lotacao = db.Column(db.String(254))
+    lotacao = db.Column(db.Integer)
     pessoa = db.relationship('Pessoa')
 
     def __str__(self):
@@ -24,14 +24,12 @@ class Sala(db.Model):
 class Cafe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome_cafe = db.Column(db.String(254))
-    lotacao_cafe = db.Column(db.String(254))
     pessoa = db.relationship('Pessoa')
 
     def __str__(self):
         return f'''
                 - id: ({self.id}) 
                 - nome: {self.nome_cafe} 
-                - lotacao: {self.lotacao_cafe} 
                 - pessoa: {self.pessoa}
                 '''
     
@@ -39,7 +37,6 @@ class Cafe(db.Model):
         return {
             "id":self.id,
             "nome_cafe":self.nome_cafe,
-            "lotacao_cafe":self.lotacao_cafe,
         }
 
 class Pessoa(db.Model):
@@ -47,15 +44,13 @@ class Pessoa(db.Model):
     nome = db.Column(db.String(254))
     sobrenome = db.Column(db.String(254))
     
+    sala = db.relationship("Sala")
     sala_id = db.Column(db.Integer, db.ForeignKey(Sala.id),
                         nullable=False)
-    sala = []
-    sala = db.relationship("Sala")
     
+    cafe = db.relationship("Cafe")
     cafe_id = db.Column(db.Integer, db.ForeignKey(Cafe.id),
                         nullable=False)
-    cafe = []
-    cafe = db.relationship("Cafe")
 
     def __str__(self):
         return f'''
