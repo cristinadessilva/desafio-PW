@@ -16,6 +16,31 @@ def listar(classe):
     resposta.headers.add("Access-Control-Allow-Origin", "*")
     return resposta
 
+@app.route('/criar/<string:classe>', methods=['post'])
+def criar(classe):
+  resposta = jsonify({"status": "201", "result": "ok", "details": "Objeto criado!"})
+  dados = request.get_json()
+  try:
+    if classe == "sala":
+        novo = Sala(**dados)
+
+    elif classe == "pessoa":
+        novo = Pessoa(**dados)
+
+    elif classe == "cafe":
+        numero_cafes = Cafe.query.count()
+        if numero_cafes <= 1:
+            novo = Cafe(**dados)
+        else:
+            resposta = jsonify({"status": "400", "result": "error", "details ": str(e)})
+    db.session.add(novo)
+    db.session.commit()
+  except Exception as e:
+    resposta = jsonify({"status": "400", "result": "error", "details ": str(e)})
+  resposta.headers.add("Access-Control-Allow-Origin", "*")
+  return resposta 
+
+
 if __name__ == '__main__':
-    db.create_all()
-    app.run(debug=True)
+  db.create_all()
+  app.run(debug=True)

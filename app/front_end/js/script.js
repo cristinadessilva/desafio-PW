@@ -1,5 +1,5 @@
 $(function () {
-  
+    
     function showContent(nextPage) {
       $("#inicio").addClass("d-none");
       $("#tabela-pessoa").addClass("d-none");
@@ -27,6 +27,7 @@ $(function () {
     $('#nav-brand').click(function () {
       showContent("inicio");
     });
+
 
     function mostrarPessoas() {
       $.ajax({
@@ -56,7 +57,7 @@ $(function () {
         }
       }
     }
-  
+    
     $(document).on("click", "#btn-incluir", function() {
       const nome = $('#campo-nome').val();
       const sobrenome = $('#campo-sobrenome').val();
@@ -67,7 +68,7 @@ $(function () {
       });
   
       $.ajax({
-        url: 'http://localhost:5000/criar_pessoa',
+        url: 'http://localhost:5000/criar/pessoa',
         type: 'POST',
         contentType: 'application/json',
         dataType: 'json',
@@ -83,48 +84,21 @@ $(function () {
             $('#campo-sobrenome').val('');
         } 
         else {
-            alert('Erro na adição da pessoa!')
+            alert('Crie a sala e o espaço do café antes de cadastrar a pessoa!')
         }
       }
-
+  
       function criarPessoaErro(resposta){
         alert('Erro na chamada do back-end')
       }
     });
     
-    $('#modal-incluir').on('hidden.bs.modal', function(e) {
+    $('#modal-incluir-pessoa').on('hidden.bs.modal', function(e) {
       if (!$('#tabela-pessoa').hasClass('invisible')) {
         mostrarPessoas();
       }
     });
-
-    function mostrarCafes() {
-        $.ajax({
-          url: 'http://localhost:5000/listar/cafe',
-          method: 'GET',
-          dataType: 'json',
-          success: listarCafes,
-          error: function () {
-            alert('erro ao ler dados, verifique o backend');
-          },
-        });
     
-        function listarCafes(cafes) {
-          $("#corpoTabelaCafe").empty();
-          showContent("tabela-cafes");
-          var linhas = '';
-      
-          for (cafe of cafes) {
-            novaLinha = `<tr id="linha_${cafe.id}">  
-                              <td>${cafe.id}</td> 
-                              <td>${cafe.nome_cafe}</td> 
-                            </tr>`;
-            linhas += novaLinha;
-            $('#corpoTabelaCafe').html(linhas);
-          }
-        }
-    }
-
     function mostrarSalas() {
       $.ajax({
         url: 'http://localhost:5000/listar/sala',
@@ -161,10 +135,9 @@ $(function () {
         nome_sala: nome_sala,
         lotacao: lotacao,
       });
-      
   
       $.ajax({
-        url: 'http://localhost:5000/criar_sala',
+        url: 'http://localhost:5000/criar/sala',
         type: 'POST',
         contentType: 'application/json',
         dataType: 'json',
@@ -195,6 +168,73 @@ $(function () {
       }
     });
     
+    function mostrarCafes() {
+      $.ajax({
+        url: 'http://localhost:5000/listar/cafe',
+        method: 'GET',
+        dataType: 'json',
+        success: listarCafes,
+        error: function () {
+          alert('erro ao ler dados, verifique o backend');
+        },
+      });
+  
+      function listarCafes(cafes) {
+        $("#corpoTabelaCafe").empty();
+        showContent("tabela-cafes");
+        var linhas = '';
+    
+        for (cafe of cafes) {
+          novaLinha = `<tr id="linha_${cafe.id}">  
+                            <td>${cafe.id}</td> 
+                            <td>${cafe.nome_cafe}</td> 
+                          </tr>`;
+          linhas += novaLinha;
+          $('#corpoTabelaCafe').html(linhas);
+        }
+      }
+    }
+
+    $(document).on("click", "#btn-incluir-cafe", function() {
+      const nome_cafe = $('#campo-nome-cafe').val();
+      const lotacao_cafe = $('#campo-lotacao-cafe').val();
+  
+      const cafeData = JSON.stringify({
+        nome_cafe: nome_cafe,
+        lotacao_cafe: lotacao_cafe,
+      });
+  
+      $.ajax({
+        url: 'http://localhost:5000/criar/cafe',
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: cafeData,
+        success: criarCafe,
+        error: criarCafeErro,
+      });
+  
+      function criarCafe(resposta) {
+        if (resposta.result == 'ok') {
+            alert('Café adicionado com sucesso')
+            $('#campo-nome-cafe').val('');
+        } 
+        else {
+            alert('Erro na adição do café! Verifique se já não foi adicionada a quantidade máxima dos espaços do café.')
+        }
+      }
+  
+      function criarCafeErro(resposta){
+        alert('Erro na chamada do back-end')
+      }
+    });
+    
+    $('#modal-incluir-cafe').on('hidden.bs.modal', function(e) {
+      if (!$('#corpoTabelaCafe').hasClass('invisible')) {
+        mostrarCafes();
+      }
+    });
+
     showContent("inicio");
   });
   
