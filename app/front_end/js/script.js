@@ -1,5 +1,33 @@
 $(function () {
   
+    function showContent(nextPage) {
+      $("#inicio").addClass("d-none");
+      $("#tabela-pessoa").addClass("d-none");
+      $("#tabela-salas").addClass("d-none");
+      $("#tabela-cafes").addClass("d-none");
+      $(`#${nextPage}`).removeClass("d-none");
+    }
+
+    $('#link-listar').click(function () {
+      mostrarPessoas();
+    });
+
+    $('#link-listar-salas').click(function () {
+      mostrarSalas();
+    });
+
+    $('#link-listar-cafes').click(function () {
+      mostrarCafes();
+    });
+
+    $("#link-inicial").click(function() {
+      showContent("inicio");
+    });
+
+    $('#nav-brand').click(function () {
+      showContent("inicio");
+    });
+
     function mostrarPessoas() {
       $.ajax({
         url: 'http://localhost:5000/listar/pessoa',
@@ -28,33 +56,6 @@ $(function () {
         }
       }
     }
-    function showContent(nextPage) {
-      $("#inicio").addClass("d-none");
-      $("#tabela-pessoa").addClass("d-none");
-      $("#tabela-salas").addClass("d-none");
-      $("#tabela-cafes").addClass("d-none");
-      $(`#${nextPage}`).removeClass("d-none");
-    }
-  
-    $('#link-listar').click(function () {
-      mostrarPessoas();
-    });
-
-    $('#link-listar-salas').click(function () {
-      mostrarSalas();
-    });
-
-    $('#link-listar-cafes').click(function () {
-      mostrarCafes();
-    });
-
-    $("#link-inicial").click(function() {
-      showContent("inicio");
-    });
-  
-    $('#nav-brand').click(function () {
-      showContent("inicio");
-    });
   
     $(document).on("click", "#btn-incluir", function() {
       const nome = $('#campo-nome').val();
@@ -85,7 +86,7 @@ $(function () {
             alert('Erro na adição da pessoa!')
         }
       }
-  
+
       function criarPessoaErro(resposta){
         alert('Erro na chamada do back-end')
       }
@@ -123,6 +124,7 @@ $(function () {
           }
         }
     }
+
     function mostrarSalas() {
       $.ajax({
         url: 'http://localhost:5000/listar/sala',
@@ -193,9 +195,6 @@ $(function () {
       }
     });
     
-
-
-
     showContent("inicio");
   });
   

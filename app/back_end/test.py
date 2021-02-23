@@ -18,24 +18,22 @@ if __name__ == "__main__":
               lotacao=11)
 
     c1 = Cafe(nome_cafe="House")
-    c2 = Cafe(nome_cafe="Cafee")
 
     db.session.add(s1)
     db.session.add(s2)
     db.session.add(s3)
     db.session.add(s4)
     db.session.add(c1)
-    db.session.add(c2)
     db.session.commit()
 
     p1 = Pessoa(nome="Cristina",
-                sobrenome="de Souza", sala=s1, cafe =c2)
+                sobrenome="de Souza", sala=s1, cafe=c1)
     p2 = Pessoa(nome="Paulo",
-                sobrenome="Silva", sala=s1, cafe =c2)
+                sobrenome="Silva", sala=s1, cafe=c1)
     p3 = Pessoa(nome="Tomas",
-                sobrenome="Alberto", sala=s2, cafe =c2)
+                sobrenome="Alberto", sala=s2, cafe=c1)
     p4 = Pessoa(nome="Ana",
-                sobrenome="Clara", sala=s1, cafe =c2)
+                sobrenome="Clara", sala=s1, cafe=c1)
 
     db.session.add(p1)
     db.session.add(p2)
@@ -46,14 +44,18 @@ if __name__ == "__main__":
     db_salas = db.session.query(Sala).all()
     db_pessoas = db.session.query(Pessoa).all()
     
+    print("Salas:")
     print(s1)
     print(s2)
     print(s3)
     print(s4)
+    print("------------------")
 
+    print("Salas e pessoas:")
     print(db_salas)
     print(db_pessoas)
 
+    print("------------------")
     print(p1)
     print(p4)
     
