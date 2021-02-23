@@ -1,6 +1,6 @@
-[autor-link]:https://img.shields.io/badge/Autora-Cristina%20de%20Souza%20e%20Silva-lightgrey
-[linguagem-link]:https://img.shields.io/badge/Linguagem-Python-lightgrey
-[licenca-link]:https://img.shields.io/badge/Licença-MIT-lightgrey
+[autor-link]:https://img.shields.io/badge/Autora-Cristina%20de%20Souza%20e%20Silva-lightpink
+[linguagem-link]:https://img.shields.io/badge/Linguagem-Python-lightpink
+[licenca-link]:https://img.shields.io/badge/Licença-MIT-lightpink
 
 # :memo: Desafio de Programação - ProWay
 
