@@ -29,10 +29,11 @@ def criar(classe):
       numero_salas = Sala.query.count()
       numero_cafes = Cafe.query.count()
       indice = random.randrange(0,numero_salas)
+      indice_cafe = random.randrange(0,numero_cafes)
       db_salas = db.session.query(Sala).all()
       db_cafes = db.session.query(Cafe).all()
       if numero_salas != 0 or numero_cafes != 0:
-        novo = Pessoa(**dados, sala = db_salas[indice], cafe = db_cafes[0])
+        novo = Pessoa(**dados, sala = db_salas[indice], cafe = db_cafes[indice_cafe])
       else:
         resposta = jsonify({"status": "400", "result": "error", "details ": str(e)})
 
