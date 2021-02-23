@@ -5,6 +5,7 @@ import os
 
 app = Flask(__name__)
 path = os.path.dirname(os.path.abspath(__file__))
+CORS(app)
 arquivobd = os.path.join(path, 'app.db')
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///"+arquivobd
