@@ -22,17 +22,26 @@ def criar(classe):
   dados = request.get_json()
   try:
     if classe == "sala":
-        novo = Sala(**dados)
+      novo = Sala(**dados)
 
     elif classe == "pessoa":
-        novo = Pessoa(**dados)
+      numero_salas = Sala.query.count()
+      numero_cafes = Cafe.query.count()
+      if numero_salas != 0 or numero_cafes != 0:
+        db_salas = db.session.query(Sala).all()
+        db_cafes = db.session.query(Cafe).all()
+        novo = Pessoa(**dados, sala = db_salas[0], cafe = db_cafes[0])
+      else:
+        resposta = jsonify({"status": "400", "result": "error", "details ": str(e)})
+
 
     elif classe == "cafe":
-        numero_cafes = Cafe.query.count()
-        if numero_cafes <= 1:
-            novo = Cafe(**dados)
-        else:
-            resposta = jsonify({"status": "400", "result": "error", "details ": str(e)})
+      numero_cafes = Cafe.query.count()
+      if numero_cafes <= 1:
+          novo = Cafe(**dados)
+      else:
+          resposta = jsonify({"status": "400", "result": "error", "details ": str(e)})
+    
     db.session.add(novo)
     db.session.commit()
   except Exception as e:

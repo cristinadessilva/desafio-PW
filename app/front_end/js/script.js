@@ -8,7 +8,7 @@ $(function () {
       $(`#${nextPage}`).removeClass("d-none");
     }
 
-    $('#link-listar').click(function () {
+    $('#link-listar-pessoas').click(function () {
       mostrarPessoas();
     });
 
