@@ -1,5 +1,6 @@
 from config import *
 from models import Pessoa, Sala, Cafe
+import random
 
 @app.route("/listar/<string:classe>")
 def listar(classe):
@@ -27,10 +28,11 @@ def criar(classe):
     elif classe == "pessoa":
       numero_salas = Sala.query.count()
       numero_cafes = Cafe.query.count()
+      indice = random.randrange(0,numero_salas)
+      db_salas = db.session.query(Sala).all()
+      db_cafes = db.session.query(Cafe).all()
       if numero_salas != 0 or numero_cafes != 0:
-        db_salas = db.session.query(Sala).all()
-        db_cafes = db.session.query(Cafe).all()
-        novo = Pessoa(**dados, sala = db_salas[0], cafe = db_cafes[0])
+        novo = Pessoa(**dados, sala = db_salas[indice], cafe = db_cafes[0])
       else:
         resposta = jsonify({"status": "400", "result": "error", "details ": str(e)})
 
