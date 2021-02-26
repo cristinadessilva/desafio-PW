@@ -65,7 +65,7 @@ Para roda-lo você precisará entra no diretório onde ele se encontra, caso oco
 # Banco de Dados
 - Quando você rodar o backend_server ele se criará automaticamente 
 - Você pode rodar os test.py antes caso queira começar o app com salas, café e pessoas adicionadas.
-- Caso queira excluir os cadastros feitos, basta apagar o arquivo app.db, e rodar o backend_server novamente, assim não haverá mias nada cadastrado.
+- Caso queira excluir os cadastros feitos, basta apagar o arquivo app.db, e rodar o backend_server novamente, assim não haverá mais nada cadastrado.
 
 #  Rodando os testes:
 Para rodar os teste utilizando a unittest:
