@@ -13,7 +13,7 @@ A empresa realizará um treinamento para uma grande empresa de TI de Blumenau e 
 - O cadastro de pessoas, com nome e sobrenome;
 - O cadastro das salas do evento, com nome e lotação;
 - O cadastro dos espaços de café pelo nome;
-- A consulta das pessoa;
+- A consulta das pessoas;
 - A consulta das salas e espaços;
 
 # Requerimentos:  
@@ -57,13 +57,13 @@ ou
 #  Rodando o programa:
 
 - Rodar o backend_server.py:
-Para roda-lo você precisará entra no diretório onde ele se encontra, caso ocorrá algum tipo de erro, certifique-se que está no diretório do projeto. 
+Para rodá-lo você precisará entrar no diretório onde ele se encontra, caso ocorra algum tipo de erro, certifique-se que está no diretório do projeto. 
 `python app/back_end/backend_server.py`
 
-- Abrir o index.html contido na pasta front_end, manualmente, ou se preferir utilizar uma extensão para abrir direto no navegador padrão
+- Abrir o index.html contido na pasta front_end, manualmente, ou se preferir utilizar uma extensão para abrir direto no navegador padrão.
 
 # Banco de Dados
-- Quando você rodar o backend_server ele se criará automaticamente 
+- Quando você rodar o backend_server o banco de dados se criará automaticamente 
 - Você pode rodar os test.py antes caso queira começar o app com salas, café e pessoas adicionadas.
 - Caso queira excluir os cadastros feitos, basta apagar o arquivo app.db, e rodar o backend_server novamente, assim não haverá mais nada cadastrado.
 
